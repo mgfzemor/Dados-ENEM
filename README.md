@@ -11,8 +11,11 @@ A aplicação terá como principal objetivo classificar todos os estudantes e ge
 =========================================================================================================================================================================================
 Authors:
 
-Mario G. Figueiró Zemor - https://www.facebook.com/mario.zemor
+Mario G. Figueiró Zemor - https://www.facebook.com/mario.zemor 
+
 Leonardo Eich - https://www.facebook.com/leonardo.eich
+
 Grégori Barros - https://www.facebook.com/gregori.barros
+
 
 =========================================================================================================================================================================================
