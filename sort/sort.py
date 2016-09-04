@@ -14,10 +14,10 @@ def shellSort(lista):
     n = len(lista)
     while h > 0:
             for i in range(h, n):
-                c = lista[i]
+                c = lista[i].nota_redacao
                 j = i
-                while j >= h and c < lista[j - h]:
-                    lista[j] = lista[j - h]
+                while j >= h and c < lista[j - h].nota_redacao:
+                    lista[j].nota_redacao = lista[j - h].nota_redacao
                     j = j - h
-                    lista[j] = c
+                    lista[j].nota_redacao = c
             h = int(h / 2.2)
