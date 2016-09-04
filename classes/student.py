@@ -25,27 +25,28 @@ Instance variables:
 ##--------------------------------------------------------------------------------------------
 ## Mais informacoes consultar o dicionaria de dados.
 '''
-
+import ast
 class Student:
     media = 0
+    #O numero presente ao lado do campo indica a posicao na qual infromacao sera buscada no vetor original
     def __init__(self,inscricao,ano,municipio,uf,idade,sexo,st_conclusao,ano_concluiu,tp_escola,in_tp_ensino,raca,nota_cn,nota_ch,nota_lc,nota_mt,nota_redacao,renda):
-        self.inscricao = inscricao
-        self.ano = ano
-        self.municipio = municipio
-        self.uf = uf
-        self.idade = idade
-        self.sexo = sexo
-        self.st_conclusao = st_conclusao
-        self.ano_concluiu = ano_concluiu
-        self.tp_escola = tp_escola
-        self.in_tp_ensino = in_tp_ensino
-        self.raca = raca
-        self.nota_cn = nota_cn
-        self.nota_ch = nota_cn
-        self.nota_lc = nota_lc
-        self.nota_mt = nota_mt
-        self.nota_redacao = nota_redacao
-        self.renda = renda
+        self.inscricao = inscricao #0
+        self.ano = ano  #1
+        self.municipio = municipio #3
+        self.uf = uf #5
+        self.idade = idade #15
+        self.sexo = sexo #16
+        self.st_conclusao = st_conclusao #22
+        self.ano_concluiu = ano_concluiu #23
+        self.tp_escola = tp_escola #24
+        self.in_tp_ensino = in_tp_ensino #25
+        self.raca = raca #27
+        self.nota_cn = nota_cn #70
+        self.nota_ch = nota_ch #71
+        self.nota_lc = nota_lc #72
+        self.nota_mt = nota_mt #73
+        self.nota_redacao = nota_redacao #89
+        self.renda = renda #92
 
     def calc_media(self):
-        return ((self.nota_cn + self.nota_ch + self.nota_lc + self.nota_mt + self.nota_redacao)/5)
+        self.media = (self.nota_cn + self.nota_ch + self.nota_lc + self.nota_mt + self.nota_redacao)/5
