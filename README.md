@@ -17,6 +17,8 @@ Autores:
 - Leonardo Eich - https://www.facebook.com/leonardo.eich
 
 - Grégori Barros - https://www.facebook.com/gregori.barros
+<hr>
+APPQuarks - 2016 &copy;
 
 
 =========================================================================================================================================================================================
