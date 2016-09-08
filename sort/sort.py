@@ -1,3 +1,4 @@
+from funcao_cmp import funcao_cmp
 
 def insertion_sort(lista):
     for i in range(1,len(lista)):
@@ -21,3 +22,19 @@ def shellSort(lista):
                     j = j - h
                     lista[j].nota_redacao = c
             h = int(h / 2.2)
+
+
+def teste(key):
+	funcao_cmp(list)
+
+#algoritmo bubble sort de ordenamento
+def bubbleSort(alist,key):
+    #print funcao_cmp(alist[i],alist[i+1],key)
+    for passnum in range(len(alist)-1,0,-1):
+        for i in range(passnum):
+            if funcao_cmp(alist[i],alist[i+1],key) == 1:
+                temp = alist[i]
+                alist[i] = alist[i+1]
+                alist[i+1] = temp
+
+
