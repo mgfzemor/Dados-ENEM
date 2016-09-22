@@ -25,7 +25,7 @@ def funcao_cmp(d1,d2,key):
 			retorno = 1
 		elif (d1.inscricao == d2.inscricao):
 			retorno = 0
-		else: 
+		else:
 			retorno = -1
 
 	elif (key == 1):
@@ -33,7 +33,7 @@ def funcao_cmp(d1,d2,key):
 			retorno = 1
 		elif (d1.ano == d2.ano):
 			retorno = 0
-		else: 
+		else:
 			retorno = -1
 
 	elif (key == 2):
@@ -41,7 +41,7 @@ def funcao_cmp(d1,d2,key):
 			retorno = 1
 		elif (d1.idade == d2.idade):
 			retorno = 0
-		else: 
+		else:
 			retorno = -1
 
 	elif (key == 3):
@@ -49,7 +49,7 @@ def funcao_cmp(d1,d2,key):
 			retorno = 1
 		elif (d1.ano_concluiu == d2.ano_concluiu):
 			retorno = 0
-		else: 
+		else:
 			retorno = -1
 
 	elif (key == 4):
@@ -57,7 +57,7 @@ def funcao_cmp(d1,d2,key):
 			retorno = 1
 		elif (d1.nota_cn == d2.nota_cn):
 			retorno = 0
-		else: 
+		else:
 			retorno = -1
 
 	elif (key == 5):
@@ -65,7 +65,7 @@ def funcao_cmp(d1,d2,key):
 			retorno = 1
 		elif (d1.nota_ch == d2.nota_ch):
 			retorno = 0
-		else: 
+		else:
 			retorno = -1
 
 	elif (key == 6):
@@ -73,7 +73,7 @@ def funcao_cmp(d1,d2,key):
 			retorno = 1
 		elif (d1.nota_lc == d2.nota_lc):
 			retorno = 0
-		else: 
+		else:
 			retorno = -1
 
 	elif (key == 7):
@@ -81,7 +81,7 @@ def funcao_cmp(d1,d2,key):
 			retorno = 1
 		elif (d1.nota_mt == d2.nota_mt):
 			retorno = 0
-		else: 
+		else:
 			retorno = -1
 
 	elif (key == 8):
@@ -89,7 +89,7 @@ def funcao_cmp(d1,d2,key):
 			retorno = 1
 		elif (d1.nota_redacao == d2.nota_redacao):
 			retorno = 0
-		else: 
+		else:
 			retorno = -1
 
 	elif (key == 9):
@@ -97,8 +97,15 @@ def funcao_cmp(d1,d2,key):
 			retorno = 1
 		elif (d1.renda == d2.renda):
 			retorno = 0
-		else: 
+		else:
 			retorno = -1
+
+	elif (key == 10):
+		if (d1.municipio > d2.municipio):
+			retorno = 1
+		elif (d1.municipio == d2.municipio):
+			retorno = 0
+		else:
+			retorno = -1
+
 	return retorno
-
-
