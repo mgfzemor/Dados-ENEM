@@ -2,11 +2,11 @@ from funcao_cmp import funcao_cmp
 
 
 # INSERTION SORT =========================================================
-def insertion_sort(lista):
+def insertion_sort(lista,key):
     for i in range(1,len(lista)):
         chave = lista[i] # elemento escolhido como chave para ser inserido na posicao correta
         j = i-1
-        while(j>=0 and chave < lista[j]):
+        while(j>=0 and funcao_cmp(chave,lista[j],key) == -1):
             lista[j+1] = lista[j] # desloca o elemento maior para a direita
             j = j-1
         if(lista[i] != chave): #  Verifica se foi realizada uma troca e escreve a chave na posicao correte
@@ -15,17 +15,17 @@ def insertion_sort(lista):
 
 
 # SHELL SORT ==============================================================
-def shellSort(lista):
+def shellSort(lista,key):
     h = 1
     n = len(lista)
     while h > 0:
             for i in range(h, n):
-                c = lista[i].nota_redacao
+                c = lista[i]
                 j = i
-                while j >= h and c < lista[j - h].nota_redacao:
-                    lista[j].nota_redacao = lista[j - h].nota_redacao
+                while j >= h and funcao_cmp(c,lista[j - h],key) == -1:
+                    lista[j] = lista[j - h]
                     j = j - h
-                    lista[j].nota_redacao = c
+                    lista[j] = c
             h = int(h / 2.2)
 # END SHELL SORT ===========================================================
 
@@ -43,27 +43,25 @@ def bubbleSort(alist,key):
 
 
 # HEAP SORT ============================================================
-def heapsort(lst):
+def heapsort(lst,key):
+    for start in range((len(lst)-2)/2, -1, -1):
+        siftdown(lst, start, len(lst)-1,key)
 
-  for start in range((len(lst)-2)/2, -1, -1):
-    siftdown(lst, start, len(lst)-1)
+    for end in range(len(lst)-1, 0, -1):
+        lst[end], lst[0] = lst[0], lst[end]
+        siftdown(lst, 0, end - 1,key)
+    return lst
 
-  for end in range(len(lst)-1, 0, -1):
-    lst[end], lst[0] = lst[0], lst[end]
-    siftdown(lst, 0, end - 1)
-  return lst
-
-def siftdown(lst, start, end):
-  root = start
-  while True:
-    child = root * 2 + 1
-    if child > end: break
-    if child + 1 <= end and lst[child] < lst[child + 1]:
-      child += 1
-    if lst[root] < lst[child]:
-      lst[root], lst[child] = lst[child], lst[root]
-      root = child
-    else:
-      break
+def siftdown(lst, start, end,key):
+    root = start
+    while True:
+        child = root * 2 + 1
+        if child > end: break
+        if child + 1 <= end and funcao_cmp(lst[child], lst[child + 1],key) == -1:
+            child += 1
+        if funcao_cmp(lst[root], lst[child],key) == -1:
+            lst[root], lst[child] = lst[child], lst[root]
+            root = child
+        else:
+            break
 # END HEAP SORT ==========================================================
-
