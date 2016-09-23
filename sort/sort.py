@@ -13,6 +13,12 @@ def insertionSort(lista,key):
             lista[j+1] = chave # caso contrario a chave ja estava na posicao certa
 # END INSERTION SORT =========================================================
 
+# INSERTION SORT BUSCA BINARIA =========================================================
+
+def insertionSortBB(lista,key):
+    return 0
+
+# END INSERTION SORT BUSCA BINARIA =========================================================
 
 # SHELL SORT ==============================================================
 def shellSort(lista,key):
@@ -42,6 +48,11 @@ def bubbleSort(alist,key):
 # END BUBBLE SORT ==============================================================
 
 
+# QUICK SORT ==============================================================
+def quickSort(lista,key):
+    return 0
+# END QUICK SORT ==============================================================
+
 # HEAP SORT ============================================================
 def heapSort(lst,key):
     for start in range((len(lst)-2)/2, -1, -1):
@@ -66,6 +77,8 @@ def siftdown(lst, start, end,key):
             break
 # END HEAP SORT ==========================================================
 
+
+# MERGE SORT ============================================================
 def mergeSort(alist,key):
     if len(alist)>1:
         mid = len(alist)//2
@@ -96,3 +109,9 @@ def mergeSort(alist,key):
             alist[k]=righthalf[j]
             j=j+1
             k=k+1
+# END MERGE SORT ==========================================================
+
+# RADIX SORT ==========================================================
+def radixSort(lista,key):
+    return 0
+# END RADIX SORT ==========================================================

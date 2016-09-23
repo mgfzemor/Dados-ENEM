@@ -2,7 +2,7 @@
 Programa que gera dois arquivos com 1.000.000 elementos ordenados de forma descrescente.
 Como o programa tem como objetivo apenas gerar arquivos ordenados inversamente sera utilizada
 a funcao de sort ja implementada no python.
-Recebe como entrada o data.bin contendo todas as informacoes
+Recebe como entrada o data.bin contendo todas as informacoes.
 '''
 # Imports
 from classes.student import Student
