@@ -137,7 +137,7 @@ for algoritmo in algoritmos:
             ini = time.time()
             radixSort(lista_c,10)
             fim = time.time()
-            write_file('RMSD','numerico',qtd,(fim-ini))
+            write_file('RMSD','categorico',qtd,(fim-ini))
 
 
 
