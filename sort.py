@@ -35,20 +35,20 @@ for qtd in quantidade:
     numerico.close()
     categorico.close()
 
-    #if qtd == 25:
-        #for i in lista_c:
-            #print i.nota_redacao,i.inscricao,i.municipio
-
+    if qtd == 25:
+        for i in lista_n:
+            print i.nota_redacao,i.inscricao,i.municipio
+    print '-------------------------------------'
     ini = time.time()
-    insertion_sort(lista_n,8)
+    mergeSort(lista_n,8)
     fim = time.time()
     print 'SHST, numerico,',qtd,',',int((fim-ini)*100),'ms'
 
     ini = time.time()
-    insertion_sort(lista_c,10)
+    mergeSort(lista_c,10)
     fim = time.time()
     print 'SHST, categorico,',qtd,',',int((fim-ini)*100),'ms'
 
-    #if qtd == 25:
-        #for j in lista_c:
-            #print j.nota_redacao,j.inscricao,j.municipio
+    if qtd == 25:
+        for j in lista_n:
+            print j.nota_redacao,j.inscricao,j.municipio

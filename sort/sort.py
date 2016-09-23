@@ -2,7 +2,7 @@ from funcao_cmp import funcao_cmp
 
 
 # INSERTION SORT =========================================================
-def insertion_sort(lista,key):
+def insertionSort(lista,key):
     for i in range(1,len(lista)):
         chave = lista[i] # elemento escolhido como chave para ser inserido na posicao correta
         j = i-1
@@ -43,7 +43,7 @@ def bubbleSort(alist,key):
 
 
 # HEAP SORT ============================================================
-def heapsort(lst,key):
+def heapSort(lst,key):
     for start in range((len(lst)-2)/2, -1, -1):
         siftdown(lst, start, len(lst)-1,key)
 
@@ -65,3 +65,34 @@ def siftdown(lst, start, end,key):
         else:
             break
 # END HEAP SORT ==========================================================
+
+def mergeSort(alist,key):
+    if len(alist)>1:
+        mid = len(alist)//2
+        lefthalf = alist[:mid]
+        righthalf = alist[mid:]
+
+        mergeSort(lefthalf,key)
+        mergeSort(righthalf,key)
+
+        i=0
+        j=0
+        k=0
+        while i < len(lefthalf) and j < len(righthalf):
+            if funcao_cmp(lefthalf[i],righthalf[j],key) == -1:
+                alist[k]=lefthalf[i]
+                i=i+1
+            else:
+                alist[k]=righthalf[j]
+                j=j+1
+            k=k+1
+
+        while i < len(lefthalf):
+            alist[k]=lefthalf[i]
+            i=i+1
+            k=k+1
+
+        while j < len(righthalf):
+            alist[k]=righthalf[j]
+            j=j+1
+            k=k+1
