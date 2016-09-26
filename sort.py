@@ -21,8 +21,8 @@ fim =0
 resultado = open('resultados_team_quarks.txt','w')
 
 print 'Analysis of algorithms...'
-quantidade = [100,1000,10000] # Adicionar 1.000.000 apenas localmente
-algoritmos = [1,3,4,6,7] #
+quantidade = [100,1000] # Adicionar 1.000.000 apenas localmente
+algoritmos = [1,2,3,6,7] #
 for algoritmo in algoritmos:
     print algoritmo,'---------'
     for qtd in quantidade:
@@ -47,9 +47,9 @@ for algoritmo in algoritmos:
         categorico.close()
 
         #if qtd == 100:
-            #for i in lista_n:
+            #for i in lista_c:
                 #print i.nota_redacao,i.inscricao,i.municipio
-        #print '-------------------------------------'
+        print '-------------------------------------'
         if algoritmo == 1:
             ini = time.time()
             insertionSort(lista_n,8)
@@ -63,12 +63,12 @@ for algoritmo in algoritmos:
 
         elif algoritmo ==2:
             ini = time.time()
-            insertionSortBB(lista_n,8)
+            lista_n = insertionSortBB(lista_n,8)
             fim = time.time()
             write_file('ISBB','numerico',qtd,(fim-ini))
 
             ini = time.time()
-            insertionSortBB(lista_c,10)
+            lista_c = insertionSortBB(lista_c,10)
             fim = time.time()
             write_file('ISBB','categorico',qtd,(fim-ini))
 
@@ -143,5 +143,5 @@ for algoritmo in algoritmos:
 
 
         #if qtd == 100:
-            #for j in lista_n:
+            #for j in lista_c:
                 #print j.nota_redacao,j.inscricao,j.municipio
