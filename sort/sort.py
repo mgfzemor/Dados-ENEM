@@ -15,38 +15,8 @@ def insertionSort(lista,key):
 
 # INSERTION SORT BUSCA BINARIA =========================================================
 
-def binary_search(A, value, start, end,key):
-    # we need to distinugish whether we should insert
-    # before or after the left boundary.
-    # imagine [0] is the last step of the binary search
-    # and we need to decide where to insert -1
-    if start == end:
-        if funcao_cmp(A[start], value,key) == 1:
-            return start
-        else:
-            return start+1
-
-    # this occurs if we are moving beyond left's boundary
-    # meaning the left boundary is the least position to
-    # find a number greater than value
-    if start > end:
-        return start
-
-    mid = (start+end)/2
-    if funcao_cmp(A[mid], value, key) == -1:
-        return binary_search(A, value, mid+1, end,key)
-    elif funcao_cmp(A[mid], value,key) == 1:
-        return binary_search(A, value, start, mid-1,key)
-    else:
-        return mid
-
-def insertionSortBB(A,key):
-    for i in xrange(1, len(A)):
-        value = A[i]
-        j = binary_search(A, value, 0, i-1,key)
-        A = A[:j] + [value] + A[j:i] + A[i+1:]
-    return A
-   
+def insertionSortBB(lista,key):
+    return 0
 
 # END INSERTION SORT BUSCA BINARIA =========================================================
 
@@ -80,7 +50,51 @@ def bubbleSort(alist,key):
 
 # QUICK SORT ==============================================================
 def quickSort(lista,key):
-    return 0
+    a = 0
+    b = len(lista)-1
+    quick_sort_iterative(lista,a,b,key)
+    #return lista
+
+def quick_sort_iterative(list_, left, right,key):
+    """
+    Iterative version of quick sort
+    """
+    temp_stack = []
+    temp_stack.append((left,right))
+
+    #Main loop to pop and push items until stack is empty
+    while temp_stack:
+        pos = temp_stack.pop()
+        right, left = pos[1], pos[0]
+        piv = partition(list_,left,right,key)
+        #If items in the left of the pivot push them to the stack
+        if piv-1 > left:
+            temp_stack.append((left,piv-1))
+        #If items in the right of the pivot push them to the stack
+        if piv+1 < right:
+            temp_stack.append((piv+1,right))
+
+def partition(list_, left, right,key):
+    """
+    Partition method
+    """
+    #Pivot first element in the array
+    piv = list_[left]
+    i = left + 1
+    j = right
+
+    while 1:
+        while i <= j  and funcao_cmp(list_[i],piv,key)<=0:
+            i +=1
+        while j >= i and funcao_cmp(list_[j],piv,key)>=0:
+            j -=1
+        if j <= i:
+            break
+        #Exchange items
+        list_[i], list_[j] = list_[j], list_[i]
+    #Exchange pivot to the right position
+    list_[left], list_[j] = list_[j], list_[left]
+    return j
 # END QUICK SORT ==============================================================
 
 # HEAP SORT ============================================================
