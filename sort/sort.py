@@ -1,4 +1,5 @@
 from funcao_cmp import funcao_cmp
+import random
 
 
 # INSERTION SORT =========================================================
@@ -79,6 +80,9 @@ def partition(list_, left, right,key):
     Partition method
     """
     #Pivot first element in the array
+
+    posicao_aleatoria = random.choice(range(left,right))
+    list_[left], list_[posicao_aleatoria] = list_[posicao_aleatoria], list_[left]
     piv = list_[left]
     i = left + 1
     j = right
