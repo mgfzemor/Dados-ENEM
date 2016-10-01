@@ -7,6 +7,7 @@ dicionario para a variavel 'algoritmos'
 '''
 # Imports
 from classes.student import Student
+from classes.student import Algoritmo
 from sort.sort import *
 import time
 import struct
@@ -19,10 +20,21 @@ def write_file(alg,kind,qtd,time):
 ini =0
 fim =0
 resultado = open('resultados_team_quarks.txt','w')
+chart_arq_n = open('data/chart_list_n.txt','w')
+chart_arq_c = open('data/chart_list_c.txt','w')
+
+ISBL = Algoritmo('ISBL',[],[])
+ISBB = Algoritmo('ISBB',[],[])
+SHST = Algoritmo('SHST',[],[])
+BBST = Algoritmo('BBST',[],[])
+QSRM = Algoritmo('QSRM',[],[])
+MGST = Algoritmo('MGST',[],[])
+HPST = Algoritmo('HPST',[],[])
+RMSD = Algoritmo('RMSD',[],[])
 
 print 'Analysis of algorithms...'
-quantidade = [100,1000] # Adicionar 1.000.000 apenas localmente
-algoritmos = [1,2,3,6,7] #
+quantidade = [100,1000,2000,5000,10000] # Adicionar 1.000.000 apenas localmente
+algoritmos = [1,2,3,4,5,6,7] #
 for algoritmo in algoritmos:
     print algoritmo,'---------'
     for qtd in quantidade:
@@ -55,93 +67,112 @@ for algoritmo in algoritmos:
             insertionSort(lista_n,8)
             fim = time.time()
             write_file('ISBL','numerico',qtd,(fim-ini))
+            ISBL.tempo_n.append(int((fim-ini)*100))
 
             ini = time.time()
             insertionSort(lista_c,10)
             fim = time.time()
             write_file('ISBL','categorico',qtd,(fim-ini))
+            ISBL.tempo_c.append(int((fim-ini)*100))
 
         elif algoritmo ==2:
             ini = time.time()
             lista_n = insertionSortBB(lista_n,8)
             fim = time.time()
             write_file('ISBB','numerico',qtd,(fim-ini))
+            ISBB.tempo_n.append(int((fim-ini)*100))
 
             ini = time.time()
             lista_c = insertionSortBB(lista_c,10)
             fim = time.time()
             write_file('ISBB','categorico',qtd,(fim-ini))
+            ISBB.tempo_c.append(int((fim-ini)*100))
 
         elif algoritmo ==3:
             ini = time.time()
             shellSort(lista_n,8)
             fim = time.time()
             write_file('SHST','numerico',qtd,(fim-ini))
+            SHST.tempo_n.append(int((fim-ini)*100))
 
             ini = time.time()
             shellSort(lista_c,10)
             fim = time.time()
             write_file('SHST','categorico',qtd,(fim-ini))
+            SHST.tempo_c.append(int((fim-ini)*100))
 
         elif algoritmo ==4:
             ini = time.time()
             bubbleSort(lista_n,8)
             fim = time.time()
             write_file('BBST','numerico',qtd,(fim-ini))
+            BBST.tempo_n.append(int((fim-ini)*100))
 
             ini = time.time()
             bubbleSort(lista_c,10)
             fim = time.time()
             write_file('BBST','categorico',qtd,(fim-ini))
+            BBST.tempo_c.append(int((fim-ini)*100))
 
         elif algoritmo ==5:
             ini = time.time()
             quickSort(lista_n,8)
             fim = time.time()
-            write_file('QSRM','numerico',HPSTqtd,(fim-ini))
+            write_file('QSRM','numerico',qtd,(fim-ini))
+            QSRM.tempo_n.append(int((fim-ini)*100))
 
             ini = time.time()
             quickSort(lista_c,10)
             fim = time.time()
             write_file('QSRM','categorico',qtd,(fim-ini))
+            QSRM.tempo_c.append(int((fim-ini)*100))
 
         elif algoritmo ==6:
             ini = time.time()
             mergeSort(lista_n,8)
             fim = time.time()
             write_file('MGST','numerico',qtd,(fim-ini))
-
+            MGST.tempo_n.append(int((fim-ini)*100))
 
             ini = time.time()
             mergeSort(lista_c,10)
             fim = time.time()
             write_file('MGST','categorico',qtd,(fim-ini))
+            MGST.tempo_c.append(int((fim-ini)*100))
 
         elif algoritmo ==7:
             ini = time.time()
             heapSort(lista_n,8)
             fim = time.time()
             write_file('HPST','numerico',qtd,(fim-ini))
+            HPST.tempo_n.append(int((fim-ini)*100))
 
             ini = time.time()
             heapSort(lista_c,10)
             fim = time.time()
             write_file('HPST','categorico',qtd,(fim-ini))
+            HPST.tempo_c.append(int((fim-ini)*100))
 
         elif algoritmo ==8:
             ini = time.time()
             radixSort(lista_n,8)
             fim = time.time()
             write_file('RMSD','numerico',qtd,(fim-ini))
+            RMSD.tempo_n.append(int((fim-ini)*100))
 
             ini = time.time()
             radixSort(lista_c,10)
             fim = time.time()
             write_file('RMSD','categorico',qtd,(fim-ini))
-
-
+            RMSD.tempo_c.append(int((fim-ini)*100))
 
 
         #if qtd == 100:
             #for j in lista_c:
                 #print j.nota_redacao,j.inscricao,j.municipio
+
+chart_list = [ISBL,ISBB,SHST,BBST,QSRM,MGST,HPST,RMSD]
+
+for alg in chart_list:
+    chart_arq_n.write(alg.nome+','+str(alg.tempo_n)+'\n')
+    chart_arq_c.write(alg.nome+','+str(alg.tempo_c)+'\n')

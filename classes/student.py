@@ -50,3 +50,10 @@ class Student:
 
     def calc_media(self):
         self.media = (self.nota_cn + self.nota_ch + self.nota_lc + self.nota_mt + self.nota_redacao)/5
+
+class Algoritmo:
+
+    def __init__(self,nome,tempo_n,tempo_c):
+        self.nome = nome
+        self.tempo_n = tempo_n
+        self.tempo_c = tempo_c

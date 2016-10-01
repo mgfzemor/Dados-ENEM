@@ -15,8 +15,37 @@ def insertionSort(lista,key):
 
 # INSERTION SORT BUSCA BINARIA =========================================================
 
-def insertionSortBB(lista,key):
-    return 0
+def binary_search(A, value, start, end,key):
+    # we need to distinugish whether we should insert
+    # before or after the left boundary.
+    # imagine [0] is the last step of the binary search
+    # and we need to decide where to insert -1
+    if start == end:
+        if funcao_cmp(A[start], value,key) == 1:
+            return start
+        else:
+            return start+1
+
+    # this occurs if we are moving beyond left's boundary
+    # meaning the left boundary is the least position to
+    # find a number greater than value
+    if start > end:
+        return start
+
+    mid = (start+end)/2
+    if funcao_cmp(A[mid], value, key) == -1:
+        return binary_search(A, value, mid+1, end,key)
+    elif funcao_cmp(A[mid], value,key) == 1:
+        return binary_search(A, value, start, mid-1,key)
+    else:
+        return mid
+
+def insertionSortBB(A,key):
+    for i in xrange(1, len(A)):
+        value = A[i]
+        j = binary_search(A, value, 0, i-1,key)
+        A = A[:j] + [value] + A[j:i] + A[i+1:]
+    return A
 
 # END INSERTION SORT BUSCA BINARIA =========================================================
 
