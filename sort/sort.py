@@ -1,4 +1,5 @@
 from funcao_cmp import funcao_cmp
+from atributo_radix import atributo_radix
 import random
 
 
@@ -190,5 +191,48 @@ def mergeSort(alist,key):
 
 # RADIX SORT ==========================================================
 def radixSort(lista,key):
-    return 0
+    if (key == 10):
+        return radix_String(lista)
+    else:
+        return radix_num (lista,key)
+
+def radix_num(a,key):
+    r = 10
+    maxLen = 11
+    for x in range(maxLen):
+        bins = [[] for i in range(r+9)]
+        for y in a:
+            if(atributo_radix(y,key)>=0):
+                bins[(atributo_radix(y,key)/10**x)%r+9].append(y)
+            else:
+                bins[(atributo_radix(y,key)/10**x)%r].append(y)
+        a=[]
+        for section in bins:
+            a.extend(section)
+    return a
+
+# Radix sort for variable length strings
+def radix_String(lista):
+    maxLen = -1
+    for aluno in lista: # Find longest string
+        aluno.municipio = aluno.municipio.replace("\x00","")
+        aluno.municipio = aluno.municipio.replace(" ","")
+        strLen = len(aluno.municipio)
+        if strLen > maxLen:
+            maxLen = strLen
+    oa = ord('A') - 1; # First character code
+    oz = ord('Z') - 1; # Last character code
+    n = oz - oa + 2; # Number of buckets (+empty character)
+    buckets = [[] for i in range(0, n)] # The buckets
+    for position in reversed(range(0, maxLen)):
+        for aluno in lista:
+            index = 0 # Assume "empty" character
+            if position < len(aluno.municipio): # Might be within length
+                index = ord(aluno.municipio[position]) - oa
+            buckets[index].append(aluno) # Add to bucket
+        del lista[:]
+        for bucket in buckets: # Reassemble lista in new order
+            lista.extend(bucket)
+            del bucket[:]
+    return lista
 # END RADIX SORT ==========================================================

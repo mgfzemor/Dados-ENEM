@@ -33,8 +33,8 @@ HPST = Algoritmo('HPST',[],[])
 RMSD = Algoritmo('RMSD',[],[])
 
 print 'Analysis of algorithms...'
-quantidade = [100,1000,2000,5000,10000] # Adicionar 1.000.000 apenas localmente
-algoritmos = [1,2,3,4,5,6,7] #
+quantidade = [100,10000,1000000] # Adicionar 1.000.000 apenas localmente
+algoritmos = [1,2,3,4,5,6,7,8] #
 for algoritmo in algoritmos:
     print algoritmo,'---------'
     for qtd in quantidade:
@@ -59,8 +59,8 @@ for algoritmo in algoritmos:
         categorico.close()
 
         #if qtd == 100:
-            #for i in lista_c:
-                #print i.nota_redacao,i.inscricao,i.municipio
+        #    for i in lista_n:
+        #        print i.nota_redacao,i.inscricao,i.municipio
         print '-------------------------------------'
         if algoritmo == 1:
             ini = time.time()
@@ -155,21 +155,21 @@ for algoritmo in algoritmos:
 
         elif algoritmo ==8:
             ini = time.time()
-            radixSort(lista_n,8)
+            lista_n = radixSort(lista_n,8)
             fim = time.time()
             write_file('RMSD','numerico',qtd,(fim-ini))
             RMSD.tempo_n.append(int((fim-ini)*100))
 
             ini = time.time()
-            radixSort(lista_c,10)
+            lista_c = radixSort(lista_c,10)
             fim = time.time()
             write_file('RMSD','categorico',qtd,(fim-ini))
             RMSD.tempo_c.append(int((fim-ini)*100))
 
 
         #if qtd == 100:
-            #for j in lista_c:
-                #print j.nota_redacao,j.inscricao,j.municipio
+        #    for j in lista_n:
+        #        print j.nota_redacao,j.inscricao,j.municipio
 
 chart_list = [ISBL,ISBB,SHST,BBST,QSRM,MGST,HPST,RMSD]
 
