@@ -112,6 +112,7 @@ def gera_grafico(aluno,lista):
         colunas = colunas + [0]
         lista_lim_classe = lista_lim_classe + [0]
         lista_lim_classe[i] = (i*amp_classe)+mi
+    lista_lim_classe[i] = ma
 
 
     for i in lista:

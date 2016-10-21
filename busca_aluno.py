@@ -72,15 +72,18 @@ def make_page_aluno(inscricao):
         aluno.raca = 'Indigena'
 
     esc_pos = -1
+    graph = []
     if cod_esc_aluno != 0:
         out = busca_alunos_por_escola(cod_esc_aluno)
         lista_alunos_escola = out[0]
         media_escola = out[1]
         graph_notas = out[2]
         escola.media_geral = media_escola/escola.total_alunos
-        mergeSort(lista_alunos_escola,8)
+
+        mergeSort(lista_alunos_escola,11)
         lista_alunos_escola = reversed(lista_alunos_escola)
         graph = gera_grafico(aluno.media,graph_notas)
+
         for esc_pos,i in enumerate(lista_alunos_escola):
             if i.inscricao == aluno.inscricao:
                 esc_pos+=1

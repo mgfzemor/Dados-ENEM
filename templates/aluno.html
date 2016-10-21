@@ -13,7 +13,7 @@
 #bt {
 
   margin-top: -65px;
-  margin-left: 100px;
+  margin-left: 140px;
 }
 </style>
 
@@ -36,11 +36,11 @@
 
       <hr/>
       <!-- RANKING -->
-      <h3>Ranking</h3>
+      <h3>Ranking por:</h3>
 
       <div class="btn-group" id="bt">
         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Por: <span class="caret"></span>
+          Média Geral <span class="caret"></span>
         </button>
         <ul class="dropdown-menu">
           <li id="numerico"><a href="#">Matemática e suas tecnologias</a></li>
@@ -51,6 +51,7 @@
           <li id="categorico"><a href="#">Média Geral</a></li>
         </ul>
       </div>
+
 
 <table class="table table-sm table-inverse">
   <thead>
@@ -193,8 +194,8 @@
                 {%endif%}
                 {%if  aluno.media  < escola.media_geral%}
                 <img src="{{url_for('static',filename='img/aluno/down.png')}}"/>
-                <td>{{escola.media_geral | round(1)}}</td>
                 {%endif%}
+                <td>{{escola.media_geral | round(1)}}</td>
             {%endif%}
 
              </td>

@@ -107,5 +107,12 @@ def funcao_cmp(d1,d2,key):
 			retorno = 0
 		else:
 			retorno = -1
+	elif (key == 11):
+		if (d1.media > d2.media):
+			retorno = 1
+		elif (d1.media == d2.media):
+			retorno = 0
+		else:
+			retorno = -1
 
 	return retorno
