@@ -1,0 +1,247 @@
+{% extends "layout.html" %}
+// Import Styles and Javascript to current page
+{% block imports %}
+
+<style>
+
+/*
+    Note: It is best to use a less version of this file ( see http://css2less.cc
+    For the media queries use @screen-sm-min instead of 768px.
+    For .omb_spanOr use @body-bg instead of white.
+*/
+
+@media (min-width: 768px) {
+    .omb_row-sm-offset-3 div:first-child[class*="col-"] {
+        margin-left: 25%;
+    }
+}
+
+.omb_login .omb_authTitle {
+    text-align: center;
+	line-height: 300%;
+}
+
+.omb_login .omb_socialButtons a {
+	color: white; // In yourUse @body-bg
+	opacity:0.9;
+}
+.omb_login .omb_socialButtons a:hover {
+    color: white;
+	opacity:1;
+}
+.omb_login .omb_socialButtons .omb_btn-facebook {background: #3b5998;}
+.omb_login .omb_socialButtons .omb_btn-twitter {background: #00aced;}
+.omb_login .omb_socialButtons .omb_btn-google {background: #c32f10;}
+
+
+.omb_login .omb_loginOr {
+	position: relative;
+	font-size: 1.5em;
+	color: #aaa;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+}
+.omb_login .omb_loginOr .omb_hrOr {
+	background-color: #cdcdcd;
+	height: 1px;
+	margin-top: 0px !important;
+	margin-bottom: 0px !important;
+}
+.omb_login .omb_loginOr .omb_spanOr {
+	display: block;
+	position: absolute;
+	left: 50%;
+	top: -0.6em;
+	margin-left: -1.5em;
+	background-color: white;
+	width: 3em;
+	text-align: center;
+}
+
+.omb_login .omb_loginForm .input-group.i {
+	width: 2em;
+}
+.omb_login .omb_loginForm  .help-block {
+    color: red;
+}
+
+
+@media (min-width: 768px) {
+    .omb_login .omb_forgotPwd {
+        text-align: right;
+		margin-top:10px;
+ 	}
+}
+</style>
+
+<script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDGKRzr_EG8zXnJelKKJ6q_3Hkx9k3xLrw",
+    authDomain: "dados-enem.firebaseapp.com",
+    databaseURL: "https://dados-enem.firebaseio.com",
+    storageBucket: "dados-enem.appspot.com",
+    messagingSenderId: "596338353864"
+  };
+  firebase.initializeApp(config);
+
+</script>
+
+
+
+
+
+{%endblock%}
+// Set a title to page
+{% block title%}
+  Firebase
+{%endblock%}
+
+  {% block page_name %}
+Testando banco de dados
+{% endblock %}
+{% block body %}
+
+<div class="container">
+
+
+    <div class="omb_login">
+    	<h3 class="omb_authTitle">Login or <a href="#">Sign up</a></h3>
+		<div class="row omb_row-sm-offset-3 omb_socialButtons">
+    	    <div class="col-xs-4 col-sm-2">
+		        <a href="#" class="btn btn-lg btn-block omb_btn-facebook">
+			        <i class="fa fa-facebook visible-xs"></i>
+			        <span class="hidden-xs">Facebook</span>
+		        </a>
+	        </div>
+        	<div class="col-xs-4 col-sm-2">
+		        <a href="#" class="btn btn-lg btn-block omb_btn-twitter">
+			        <i class="fa fa-twitter visible-xs"></i>
+			        <span class="hidden-xs">Twitter</span>
+		        </a>
+	        </div>
+        	<div class="col-xs-4 col-sm-2">
+		        <a href="#" class="btn btn-lg btn-block omb_btn-google">
+			        <i class="fa fa-google-plus visible-xs"></i>
+			        <span class="hidden-xs">Google+</span>
+		        </a>
+	        </div>
+		</div>
+
+		<div class="row omb_row-sm-offset-3 omb_loginOr">
+			<div class="col-xs-12 col-sm-6">
+				<hr class="omb_hrOr">
+				<span class="omb_spanOr">or</span>
+			</div>
+		</div>
+
+		<div class="row omb_row-sm-offset-3">
+			<div class="col-xs-12 col-sm-6">
+
+					<div class="input-group">
+						<span class="input-group-addon"><i class="fa fa-user"></i></span>
+						<input type="text" class="form-control" id="username" placeholder="email address">
+					</div>
+
+
+					<div class="input-group">
+						<span class="input-group-addon"><i class="fa fa-lock"></i></span>
+						<input  type="password" class="form-control" id="passwd" placeholder="Password">
+					</div>
+          <span class="help-block" id="error_login"></span>
+
+					<button id="submit">Submit</button>
+          <button id="login" style="">login</button>
+
+			</div>
+    	</div>
+		<div class="row omb_row-sm-offset-3">
+			<div class="col-xs-12 col-sm-3">
+				<label class="checkbox">
+					<input type="checkbox" value="remember-me">Remember Me
+				</label>
+			</div>
+			<div class="col-xs-12 col-sm-3">
+				<p class="omb_forgotPwd">
+					<a href="#">Forgot password?</a>
+				</p>
+			</div>
+		</div>
+	</div>
+
+
+
+        </div>
+
+        <script>
+        $( "#submit" ).click(function() {
+            var mail = $("#username").val();
+            var pass = $("#passwd").val();
+
+            firebase.auth().createUserWithEmailAndPassword(mail, pass).catch(function(error) {
+
+            var errorCode = error.code;
+            var errorMessage = error.message;
+
+            if (!errorCode) {
+              console.log('cadastro ok');
+              $("#error_login").text('Casdastro realizado...');
+              $("#submit").hide();
+              $("#login").show();
+
+            }
+            console.log(errorMessage);
+            console.log('ok')
+
+            });
+
+        });
+
+
+
+
+        $( "#login" ).click(function() {
+            var mail = $("#username").val();
+            var pass = $("#passwd").val();
+
+            firebase.auth().signInWithEmailAndPassword(mail, pass).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            if (errorCode) {
+              $("#error_login").text(errorMessage);
+
+
+            };
+
+            firebase.auth().onAuthStateChanged(function(user) {
+              if (user.emailVerified)
+              {
+                  console.log('Email is verified');
+              }
+              else
+              {
+
+                  console.log('Email is not verified');
+
+                  firebase.auth().onAuthStateChanged(function(user) {
+                        user.sendEmailVerification();
+                        $("#error_login").text('email de verificação enviado');
+                  });
+              }
+
+            });
+
+
+
+
+          });
+
+        });
+
+        </script>
+
+{% endblock %}

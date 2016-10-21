@@ -1,0 +1,276 @@
+{% extends "layout.html" %}
+
+{% block imports %}
+<script src={{url_for('static',filename='chart/Chart.js')}}></script>
+{% endblock %}
+
+{% block title%} Aluno {%endblock%}
+{% block page_name %}Informações{% endblock %}
+{% block body %}
+
+{% if found == 1%}
+<style>
+#bt {
+
+  margin-top: -65px;
+  margin-left: 100px;
+}
+</style>
+
+<div class="row" id="info">
+    <!-- Coluna de informações do Aluno-->
+    <div class="col-md-6">
+      <h3>Dados: {{aluno.inscricao}}</h3>
+      {% if aluno.sexo == 'M' %}
+      <img src="{{url_for('static',filename='img/aluno/M.png')}}"/>
+      {% endif %}
+      {% if aluno.sexo == 'F' %}
+      <img src="{{url_for('static',filename='img/aluno/F.png')}}"/>
+      {% endif %}
+      <b> Sexo: </b>{{aluno.sexo}}  | <b> Idade: </b>{{aluno.idade}} | <b> Raça: </b>{{aluno.raca}}<br/>
+      <br/>
+      <b>Escola: </b>{{aluno.cod_escola}}<br/>
+      <b>Tipo escola: </b>{{escola.tipo_escola}}<br/>
+      <b>Cidade: </b>{{aluno.municipio}}<br/>
+      <b>Estado: </b>{{aluno.uf}}<br/>
+
+      <hr/>
+      <!-- RANKING -->
+      <h3>Ranking</h3>
+
+      <div class="btn-group" id="bt">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Por: <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li id="numerico"><a href="#">Matemática e suas tecnologias</a></li>
+          <li id="categorico"><a href="#">Ciências humanas e suas tecnologias</a></li>
+          <li id="categorico"><a href="#">Linguagens, códigos e suas tecnologias</a></li>
+          <li id="categorico"><a href="#">Ciências da natureza e suas tecnologias</a></li>
+          <li id="categorico"><a href="#">Redação</a></li>
+          <li id="categorico"><a href="#">Média Geral</a></li>
+        </ul>
+      </div>
+
+<table class="table table-sm table-inverse">
+  <thead>
+
+  </thead>
+  <tbody>
+    {%if pos_esc > 0%}
+    <tr>
+      <td>Escola:</td>
+      <td><b>{{pos_esc}}º</b> colocado de <b>{{escola.total_alunos}}</b> candidatos</td>
+    </tr>
+    {%endif%}
+    <tr>
+      <td>Cidade:</td>
+      <td></td>
+
+    </tr>
+    <tr>
+
+      <td >Estado:</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- END RANKING -->
+    </div>
+
+    <div style="" class="col-md-6" height="400px" width="400">
+
+      <h3>Notas</h3>
+      <table class="table">
+     <thead>
+         <tr>
+             <th>Área do Conhecimento</th>
+             <th>Aluno</th>
+            {%if escola%}
+              <th></th>
+              <th>Escola</th>
+            {%endif%}
+         </tr>
+     </thead>
+     <tbody>
+         <tr>
+             <td>Matemática e suas tecnologias</td>
+             <td>{{aluno.nota_mt}}</td>
+             <td>
+            {%if escola%}
+               {%if aluno.nota_mt > escola.media_mt%}
+                <img src="{{url_for('static',filename='img/aluno/up.png')}}"/>
+                {%endif%}
+                {%if aluno.nota_mt < escola.media_mt%}
+                <img src="{{url_for('static',filename='img/aluno/down.png')}}"/>
+                {%endif%}
+
+             </td>
+
+
+               <td>{{escola.media_mt}}</td>
+             {%endif%}
+
+         </tr>
+         <tr>
+             <td>Ciências humanas e suas tecnologias</td>
+             <td>{{aluno.nota_ch}}</td>
+
+             <td>
+            {%if escola%}
+               {%if aluno.nota_ch > escola.media_ch%}
+                <img src="{{url_for('static',filename='img/aluno/up.png')}}"/>
+                {%endif%}
+                {%if aluno.nota_ch < escola.media_ch%}
+                <img src="{{url_for('static',filename='img/aluno/down.png')}}"/>
+            {%endif%}
+             </td>
+
+               <td>{{escola.media_ch}}</td>
+             {%endif%}
+
+         </tr>
+         <tr>
+             <td>Linguagens, códigos e suas tecnologias</td>
+             <td>{{aluno.nota_lc}}</td>
+
+             <td>
+            {%if escola%}
+               {%if aluno.nota_lc > escola.media_lc%}
+                <img src="{{url_for('static',filename='img/aluno/up.png')}}"/>
+                {%endif%}
+                {%if aluno.nota_lc < escola.media_lc%}
+                <img src="{{url_for('static',filename='img/aluno/down.png')}}"/>
+            {%endif%}
+            </td>
+
+               <td>{{escola.media_lc}}</td>
+             {%endif%}
+         </tr>
+         <tr>
+             <td>Ciências da natureza e suas tecnologias</td>
+             <td>{{aluno.nota_cn}}</td>
+
+             <td>
+            {%if escola%}
+               {%if aluno.nota_cn > escola.media_cn%}
+                <img src="{{url_for('static',filename='img/aluno/up.png')}}"/>
+                {%endif%}
+                {%if aluno.nota_cn < escola.media_cn%}
+                <img src="{{url_for('static',filename='img/aluno/down.png')}}"/>
+            {%endif%}
+             </td>
+
+               <td>{{escola.media_cn}}</td>
+             {%endif%}
+         </tr>
+         <tr>
+             <td>Redação</td>
+             <td>{{aluno.nota_redacao}}</td>
+             <td>
+            {%if escola%}
+               {%if aluno.nota_redacao > escola.media_redacao%}
+                <img src="{{url_for('static',filename='img/aluno/up.png')}}"/>
+                {%endif%}
+                {%if aluno.nota_redacao < escola.media_redacao%}
+                <img src="{{url_for('static',filename='img/aluno/down.png')}}"/>
+            {%endif%}
+
+             </td>
+
+               <td>{{escola.media_redacao}}</td>
+             {%endif%}
+         </tr>
+
+         <tr>
+             <td>Média Geral</td>
+             <td>{{ aluno.media }}</td>
+             <td>
+            {%if escola%}
+               {%if  aluno.media > escola.media_geral%}
+                <img src="{{url_for('static',filename='img/aluno/up.png')}}"/>
+                {%endif%}
+                {%if  aluno.media  < escola.media_geral%}
+                <img src="{{url_for('static',filename='img/aluno/down.png')}}"/>
+                <td>{{escola.media_geral | round(1)}}</td>
+                {%endif%}
+            {%endif%}
+
+             </td>
+         </tr>
+     </tbody>
+  </table>
+    </div>
+
+    <!-- /.col-md-4 -->
+</div>
+
+<div class="row" id="info">
+    <!-- Grafico de distribuicao de notas dos alunos de uma escola -->
+    <div class="col-md-6">
+      <canvas id="myChart" width="400" height="400"></canvas>
+      <script>
+
+      var ctx = document.getElementById("myChart");
+          var data = {
+              labels: {{graph_notas[1]}},
+              datasets: [
+                  {
+                      label: "Distribuição de Notas da Escola",
+                      backgroundColor: [
+                          {%for i in graph_notas[1]%}
+                          {%if graph_notas[0] == graph_notas[1].index(i)%}
+                          'rgba(54, 162, 235, 1)',
+                          {%endif%}
+                          'rgba(54, 162, 235, 0.5)',
+
+                          {%endfor%}
+                      ],
+                      borderColor: [
+                          'rgba(54, 162, 235, 1)',
+                          'rgba(54, 162, 235, 1)',
+                          'rgba(54, 162, 235, 1)',
+                          'rgba(54, 162, 235, 1)',
+                          'rgba(54, 162, 235, 1)',
+                          'rgba(54, 162, 235, 1)',
+                          'rgba(54, 162, 235, 1)',
+                      ],
+                      borderWidth: 1,
+                      data: {{graph_notas[2]}},
+                  }
+              ]
+          };
+          var myBarChart = new Chart(ctx, {
+              type: 'bar',
+              data: data,
+              options: {
+           responsive: true
+       }
+          });
+
+
+      </script>
+    </div>
+
+    <div class="col-md-6">
+    </div>
+
+</div>
+
+
+<!--
+<p>{{aluno}}</p>
+{%endif%}
+
+{%if escola%}
+<p>{{escola}}</p>
+{%endif%}
+-->
+{% if found == 0%}
+<p>Aluno não encontrado...</p>
+{%endif%}
+{{graph_notas}}
+
+
+{% endblock %}

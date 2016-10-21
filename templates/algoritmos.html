@@ -1,0 +1,184 @@
+{% extends "layout.html" %}
+
+{% block imports %}
+<script src={{url_for('static',filename='chart/Chart.js')}}></script>
+
+{% endblock %}
+
+{% block title%} algoritmos {%endblock%}
+{% block page_name %}Algoritmos - Análise de desempenho.{% endblock %}
+{% block body %}
+
+<div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Tipo de Dados <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li id="numerico"><a href="#">Númerico</a></li>
+    <li role="separator" class="divider"></li>
+    <li id="categorico"><a href="#">Categórico</a></li>
+  </ul>
+</div>
+
+<hr>
+<div style="width:75%;">
+  <canvas id="canvas_n"></canvas>
+</div>
+
+<hr id="hr"/>
+<div style="width:75%;">
+  <canvas id="canvas_c"></canvas>
+</div>
+<p></p>
+
+
+
+    {% if charts %}
+    <script>
+
+        var config_n = {
+            type: 'line',
+            data: {
+                labels: ["100","1000","10000","100000"],
+                datasets: [
+                  {%for algoritmo in charts[0]%}
+                  { {% if not algoritmo[0] == 'ISBL'%}
+                      hidden: true,
+                    {% endif %}
+                    label: "{{algoritmo[0]}}",
+                    data: [{{algoritmo[1]}}],
+                    fill: false,
+                    borderColor: "rgba({{algoritmo[2][0]}},{{algoritmo[2][1]}},{{algoritmo[2][2]}},1)",
+                    pointBackgroundColor: "#000",
+                    backgroundColor: "rgba({{algoritmo[2][0]}},{{algoritmo[2][1]}},{{algoritmo[2][2]}},0.2)",
+
+                    //borderJoinStyle: 'miter',
+                    //borderDash: [5, 5],
+                },
+                {% endfor %}
+
+              ]
+            },
+            options: {
+                responsive: true,
+                title:{
+                    display:true,
+                    text:'Dados númericos'
+                },
+                tooltips: {
+                    mode: 'label'
+                },
+                hover: {
+                    mode: 'dataset'
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Quantidade de Dados'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Tempo em (ms)'
+                        },
+                        ticks: {
+                            suggestedMin: 0,
+                            suggestedMax: 100,
+                        }
+                    }]
+                }
+            }
+        };
+
+        var config_c = {
+            type: 'line',
+            data: {
+                labels: ["100","1000","10000","100000"],
+                datasets: [
+                  {%for algoritmo in charts[1]%}
+                  {
+                    {% if not algoritmo[0] == 'ISBB'%}
+                      hidden: true,
+                    {% endif %}
+                    label: "{{algoritmo[0]}}",
+                    data: [{{algoritmo[1]}}],
+                    fill: false,
+                    borderColor: "rgba({{algoritmo[2][0]}},{{algoritmo[2][1]}},{{algoritmo[2][2]}},1)",
+                    pointBackgroundColor: "#000",
+                    backgroundColor: "rgba({{algoritmo[2][0]}},{{algoritmo[2][1]}},{{algoritmo[2][2]}},0.2)",
+
+                    //borderJoinStyle: 'miter',
+                    //borderDash: [5, 5],
+                },
+                {% endfor %}
+
+              ]
+            },
+            options: {
+                responsive: true,
+                title:{
+                    display:true,
+                    text:'Dados categóricos'
+                },
+                tooltips: {
+                    mode: 'label'
+                },
+                hover: {
+                    mode: 'dataset'
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Quantidade de Dados'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Tempo em (ms)'
+                        },
+                        ticks: {
+                            suggestedMin: 0,
+                            suggestedMax: 100,
+                        }
+                    }]
+                }
+            }
+        };
+
+        window.onload = function() {
+            var ctx_n = document.getElementById("canvas_n").getContext("2d");
+            window.myLine = new Chart(ctx_n, config_n);
+
+            var ctx_c = document.getElementById("canvas_c").getContext("2d");
+            window.myLine = new Chart(ctx_c, config_c);
+            $( "#canvas_c" ).hide();
+        };
+
+
+    </script>
+
+    <script>
+$( "#numerico" ).click(function() {
+  $( "#canvas_n" ).show( "slow" );
+  $( "#canvas_c" ).hide( "slow" );
+});
+
+$( "#categorico" ).click(function() {
+  $( "#canvas_n" ).hide( "slow" );
+  $( "#hr" ).hide( "slow" );
+  $( "#canvas_c" ).show( "slow" );
+
+});
+</script>
+
+    {% endif %}
+
+{% endblock %}

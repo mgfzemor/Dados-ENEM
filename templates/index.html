@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+{% block title%} Home {%endblock%}
+
+{% block imports%}
+
+{%endblock%}
+
+{% block page_name %}
+Censo ENEM 2014
+{% endblock %}
+
+{% block body %}
+<!-- Heading Row -->
+<div class="row" id="info">
+    <div class="col-md-6">
+        <img id="wall" class="img-responsive img-rounded" src="{{url_for('static',filename='img/all.png')}}" alt="">
+    </div>
+    <!-- /.col-md-8 -->
+    <div class="col-md-6">
+        <h1>Vamos analisar os dados!</h1>
+        <h4>Chegou a hora de ver de perto tudo o que acontece no ENEM, aqui você encontra todos os parâmetros e pode analisar
+        quais as variáveis influênciamn no desempenho da prova. Verfica também as médias por estados e cidades podendo assim
+      saber como está a sua colocação em relação à sua região.</h4>
+        <a class="btn btn-primary btn-lg" href="#" id="more">Ler Mais</a>
+    </div>
+    <!-- /.col-md-4 -->
+</div>
+<!-- /.row -->
+
+<div class="row" id="info2">
+    <div class="col-md-6">
+        <img id="wall" class="img-responsive img-rounded" src="{{url_for('static',filename='img/enem.png')}}" alt="">
+    </div>
+    <!-- /.col-md-8 -->
+    <div class="col-md-6">
+        <h1>Vamos analisar os dados!</h1>
+        <h4>Chegou a hora de ver de perto tudo o que acontece no ENEM, aqui você encontra todos os parâmetros e pode analisar
+        quais as variáveis influênciamn no desempenho da prova. Verfica também as médias por estados e cidades podendo assim
+      saber como está a sua colocação em relação à sua região.</h4>
+        <a class="btn btn-primary btn-lg" href="#" id="more2">Ler Mais</a>
+    </div>
+    <!-- /.col-md-4 -->
+</div>
+<!-- /.row -->
+
+<script>
+$( "#more" ).click(function() {
+  $( "#info" ).hide( "slow" );
+  $( "#info2" ).show( "slow" );
+
+});
+
+$( "#more2" ).click(function() {
+  $( "#info2" ).hide( "slow" );
+  $( "#info" ).show( "slow" );
+
+});
+
+window.onload = function() {
+
+    $( "#info2" ).hide();
+};
+
+</script>
+
+
+
+{% endblock %}

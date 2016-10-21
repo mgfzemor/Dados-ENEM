@@ -1,0 +1,114 @@
+{% extends "layout.html" %}
+{% block title%} Maps {%endblock%}
+{% block imports%}
+<script src={{url_for('static',filename='chart/Chart.js')}}></script>
+<style>
+h2 {
+  display: block-inline;
+  margin-left: 10px;
+}
+</style>
+
+{%endblock%}
+{% block page_name %}
+{{info[0]}}
+{% endblock %}
+
+{% block body %}
+
+<div class="row" id="info">
+    <div class="col-md-6">
+      <iframe width="100%" height="400px" frameborder="0" style="border:0"
+      src="https://www.google.com/maps/embed/v1/place?q=place_id:{{info[1]}}&key=AIzaSyCcsLWXP1VUt4nGWT1mTImutuEtvIsAT7k" allowfullscreen></iframe>
+    </div>
+    <!-- /.col-md-8 -->
+    <div style="" class="col-md-6" height="400px" width="400">
+      <h1>Parâmetros:</h1>
+      <h3>Média (µ)</h3>
+      <table class="table">
+     <thead>
+         <tr>
+             <th>Área do Conhecimento</th>
+             <th>nota</th>
+         </tr>
+     </thead>
+     <tbody>
+         <tr>
+             <td>Matemática e suas tecnologias</td>
+             <td>{{pam[1]}}</td>
+
+         </tr>
+         <tr>
+             <td>Ciências humanas e suas tecnologias</td>
+             <td>{{pam[2]}}</td>
+
+         </tr>
+         <tr>
+             <td>Linguagens, códigos e suas tecnologias</td>
+             <td>{{pam[3]}}</td>
+         </tr>
+         <tr>
+             <td>Ciências da natureza e suas tecnologias</td>
+             <td>{{pam[4]}}</td>
+         </tr>
+         <tr>
+             <td>Redação</td>
+             <td>{{pam[5]}}</td>
+         </tr>
+         <tr>
+             <td>Geral</td>
+             <td>{{pam[6]}}</td>
+         </tr>
+     </tbody>
+  </table>
+    </div>
+
+    <!-- /.col-md-4 -->
+</div>
+<!-- /.row -->
+<div class="row" id="info">
+
+  <div class="col-md-6">
+      <h3>Estudantes (N)</h3>
+      <p><b>{{pam[0]}}</b> inscritos | <b>{{pam[7]}}</b>  presentes   <b>{{pam[8]}} </b> ausentes <p>
+    </div>
+
+  <div style="" class="col-md-6">
+      <canvas id="canvas_n"></canvas>
+    </div>
+
+</div>
+
+<script>
+
+var data = {
+labels: [
+    "Presentes",
+    "Ausentes",
+],
+datasets: [
+    {
+        data: [{{pam[7]}}, {{pam[8]}}],
+        backgroundColor: [
+            "#FF6384",
+            "#36A2EB",
+        ],
+        hoverBackgroundColor: [
+            "#FF6384",
+            "#36A2EB",
+        ]
+    }]
+};
+
+    window.onload = function() {
+        var ctx_n = document.getElementById("canvas_n").getContext("2d");
+
+        var myPieChart = new Chart(ctx_n,{
+          type: 'pie',
+          data: data,
+
+          });
+    };
+    </script>
+
+{% endblock %}
