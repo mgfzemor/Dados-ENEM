@@ -73,6 +73,36 @@ class Escola:
         self.media_geral = media_geral
         self.total_alunos = total_alunos
 
+class Municipio:
+    def __init__(sefl,id_municipio,cod_municipio,ano,municipio,media_cn,media_ch,media_lc,media_mt,media_redacao,media_geral,total_alunos,total_escolas):
+        self.id_municipio = id_municipio
+        self.cod_municipio = cod_municipio
+        self.ano = ano
+        self.municipio = municipio
+        self.media_cn = media_cn
+        self.media_ch = media_ch
+        self.media_lc = media_lc
+        self.media_mt = media_mt
+        self.media_redacao = media_redacao
+        self.media_geral = media_geral
+        self.total_alunos = total_alunos
+        self.total_escolas = total_escolas
+
+class Estado:
+    def __init(self,id_uf,cod_uf,media_cn,media_ch,media_lc,media_mt,media_redacao,media_geral,total_alunos,total_escolas,total_municipios):
+        self.id_uf = id_uf
+        self.cod_uf = cod_uf
+        self.media_cn = media_cn
+        self.media_ch = media_ch
+        self.media_lc = media_lc
+        self.media_mt = media_mt
+        self.media_redacao = media_redacao
+        self.media_geral = media_geral
+        self.total_alunos = total_alunos
+        self.total_escolas = total_escolas
+        self.total_municipios = total_municipios
+
+
 class Algoritmo:
     def __init__(self,nome,tempo_n,tempo_c):
         self.nome = nome
