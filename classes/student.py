@@ -74,17 +74,16 @@ class Escola:
         self.total_alunos = total_alunos
 
 class Municipio:
-    def __init__(sefl,id_municipio,cod_municipio,ano,municipio,media_cn,media_ch,media_lc,media_mt,media_redacao,media_geral,total_alunos,total_escolas):
+    def __init__(self,id_municipio,cod_municipio,municipio,media_cn,media_ch,media_lc,media_mt,media_redacao,media_geral,total_alunos,total_escolas):
         self.id_municipio = id_municipio
         self.cod_municipio = cod_municipio
-        self.ano = ano
         self.municipio = municipio
-        self.media_cn = media_cn
-        self.media_ch = media_ch
-        self.media_lc = media_lc
-        self.media_mt = media_mt
-        self.media_redacao = media_redacao
-        self.media_geral = media_geral
+        self.media_cn = round(decimal.Decimal(media_cn),1)
+        self.media_ch = round(decimal.Decimal(media_ch),1)
+        self.media_lc = round(decimal.Decimal(media_lc),1)
+        self.media_mt = round(decimal.Decimal(media_mt),1)
+        self.media_redacao = round(decimal.Decimal(media_redacao),1)
+        self.media_geral = round(decimal.Decimal(media_geral),1)
         self.total_alunos = total_alunos
         self.total_escolas = total_escolas
 

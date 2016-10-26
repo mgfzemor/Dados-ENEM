@@ -114,5 +114,12 @@ def funcao_cmp(d1,d2,key):
 			retorno = 0
 		else:
 			retorno = -1
+	elif (key == 12):
+		if (d1.cod_municipio > d2.cod_municipio):
+			retorno = 1
+		elif (d1.cod_municipio == d2.cod_municipio):
+			retorno = 0
+		else:
+			retorno = -1
 
 	return retorno
