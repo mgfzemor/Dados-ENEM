@@ -35,20 +35,16 @@ index_municipio_struct = struct.Struct('l l l l')
 Funcao que recebe um tipo de estrutura e um arquivo, e retorna
 uma lista de tuplas
 '''
-def unpack_data(type_struct,file_name,cod):
+def unpack_data(type_struct,file_name):
     file_data = open(file_name,'rb')
     lista = []
-    i = 0
+    i=0
     while True:
         data = file_data.read(type_struct.size)
         if data:
             n = type_struct.unpack(data)
-            if cod == 1:
-                aluno = Student(n[0],n[1],n[2],n[3],n[4],n[5],n[6],n[7],n[8],n[9],n[10],n[11],n[12],n[13],n[14],n[15],n[16],n[17],n[18],n[19],n[20])
-                lista.append(aluno)
-                i += 1
-            if i == 100000:
-                return lista
+            aluno = Student(n[0],n[1],n[2],n[3],n[4],n[5],n[6],n[7],n[8],n[9],n[10],n[11],n[12],n[13],n[14],n[15],n[16],n[17],n[18],n[19],n[20])
+            lista.append(aluno)
         else:
             return lista
 '''

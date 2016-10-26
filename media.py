@@ -1,7 +1,7 @@
 import struct
 
 def media_estado(estado):
-    type_struct = struct.Struct('l h 25s 2s h c h h h h h f f f f h c')
+    type_struct = struct.Struct('l h l 25s h 2s l h c h h h h h h f f f f h c')
     # And Imports ===========================================================
 
     var = 4
